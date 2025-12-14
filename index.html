@@ -25,6 +25,33 @@
 
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
+    <!-- =========================================================
+     VOICEFLOW CURATOR WIDGET (PLACEHOLDER)
+     Replace VF_WIDGET_SRC with your Voiceflow widget script URL
+     Replace VF_PROJECT_ID with your project/assistant id
+========================================================= -->
+<script>
+  // Optional: simple helper for curator “teleport”
+  window.ALEXANDRIA_GO = function(hash){
+    if(!hash.startsWith("#")) hash = "#" + hash;
+    location.hash = hash;
+    document.querySelector(hash)?.scrollIntoView({behavior:"smooth", block:"start"});
+  };
+</script>
+
+<script src="VF_WIDGET_SRC"></script>
+<script>
+  // PSEUDO-INIT (Voiceflow embed APIs differ by widget version)
+  // Replace with your actual Voiceflow init snippet.
+  window.voiceflow?.chat?.load?.({
+    projectID: "VF_PROJECT_ID",
+    versionID: "production",
+    assistant: {
+      title: "Curator of Digital Alexandria",
+      description: "Choose a wing. I will guide you exhibit-by-exhibit.",
+    }
+  });
+</script>
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;

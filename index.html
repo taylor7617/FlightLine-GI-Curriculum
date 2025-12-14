@@ -3,29 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Digital Alexandria | Google Workspace Learning Center (3×3 App Launcher)</title>
+  <title>FlightLine GI Curriculum | Digital Alexandria Museum</title>
 
-  <meta name="description" content="Digital Alexandria: a museum-grade 3×3 index to the Google Workspace Learning Center—Drive, Gmail, Calendar, Docs, Sheets, Slides, Meet, Chat, Contacts. One catalog. Nine wings. Official sources only." />
+  <meta name="description" content="Digital Alexandria: FlightLine GI Curriculum museum map. Catalog → 3×3 → Wing → Exhibit. Official learning links only." />
   <meta name="theme-color" content="#0b1020" />
 
   <style>
     :root{
-      --bg0:#070a12;
-      --bg1:#0b1020;
-      --panel:#0d1630;
-      --panel2:#0a1329;
-      --text:#e8edf7;
-      --muted:#9aa7c1;
-      --gold:#d4b16a;
-      --ink:#38bdf8;
+      --bg0:#070a12; --bg1:#0b1020;
+      --panel:#0d1630; --panel2:#0a1329;
+      --text:#e8edf7; --muted:#9aa7c1;
+      --gold:#d4b16a; --ink:#38bdf8;
       --line:rgba(255,255,255,.10);
       --shadow: 0 16px 40px rgba(0,0,0,.45);
       --ok: rgba(56,189,248,.35);
     }
-
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
-
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
@@ -36,7 +30,6 @@
         linear-gradient(180deg, var(--bg0), var(--bg1));
       line-height:1.55;
     }
-
     a{ color: var(--ink); text-decoration:none; }
     a:hover{ text-decoration:underline; }
 
@@ -52,7 +45,6 @@
       display:flex; gap:12px; align-items:center; justify-content:space-between;
       flex-wrap:wrap;
     }
-
     .brand{ display:flex; gap:10px; align-items:center; }
     .seal{
       width:36px; height:36px; border-radius:12px;
@@ -67,10 +59,7 @@
     .brand h1{ font-size:1.08rem; margin:0; }
     .brand .sub{ font-size:.84rem; color:var(--muted); margin-top:2px; }
 
-    .toc{
-      display:flex; flex-wrap:wrap; gap:10px;
-      justify-content:flex-end;
-    }
+    .toc{ display:flex; flex-wrap:wrap; gap:10px; justify-content:flex-end; }
     .chip{
       display:inline-flex; align-items:center; gap:8px;
       padding:8px 10px;
@@ -92,11 +81,7 @@
       box-shadow: var(--shadow);
       padding: 26px 22px;
     }
-    .hero h2{
-      margin:0 0 10px;
-      font-size:2.05rem;
-      letter-spacing:-.02em;
-    }
+    .hero h2{ margin:0 0 10px; font-size:2.05rem; letter-spacing:-.02em; }
     .hero p{ margin: 10px 0; color: var(--muted); }
     .law{
       margin-top: 14px;
@@ -106,9 +91,7 @@
       border: 1px solid rgba(212,177,106,.18);
       color: #f2e7cf;
     }
-    .kicker{
-      display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;
-    }
+    .kicker{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
     .badge{
       border:1px solid var(--line);
       background: rgba(13,22,48,.55);
@@ -125,92 +108,16 @@
       margin: 26px 2px 12px;
       flex-wrap:wrap;
     }
-    .hall-title h3{
-      margin:0;
-      font-size:1.25rem;
-      color: var(--gold);
-      letter-spacing:.02em;
-    }
+    .hall-title h3{ margin:0; font-size:1.25rem; color: var(--gold); letter-spacing:.02em; }
     .hall-title .note{ color: var(--muted); font-size:.94rem; }
 
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
-      gap: 14px;
-    }
-
-    .card{
-      border:1px solid var(--line);
-      border-radius:18px;
-      background: rgba(13,22,48,.62);
-      box-shadow: 0 10px 24px rgba(0,0,0,.35);
-      padding: 16px 16px 14px;
-    }
-    .card .cap{
-      display:flex; justify-content:space-between; gap:10px; align-items:center;
-      margin-bottom: 10px;
-    }
-    .sig{
-      font-weight:900;
-      letter-spacing:.08em;
-      font-size:.72rem;
-      color: rgba(212,177,106,.95);
-      text-transform:uppercase;
-    }
-    .icon{
-      width:36px; height:36px; border-radius:14px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      display:grid; place-items:center;
-      font-size:1.05rem;
-      user-select:none;
-    }
-    .card h4{ margin: 0 0 6px; font-size:1.06rem; }
-    .card p{ margin: 0 0 10px; color: var(--muted); font-size:.95rem; }
-    .list{ margin:0; padding-left: 18px; color: var(--muted); }
-    .list li{ margin: 7px 0; }
-
-    .ctaRow{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 10px; }
-    .cta{
-      display:inline-flex; align-items:center; gap:8px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid var(--ok);
-      background: rgba(56,189,248,.08);
-      color: var(--text);
-      font-weight: 750;
-      font-size: .92rem;
-      text-decoration:none;
-    }
-    .cta:hover{ text-decoration:none; filter: brightness(1.06); }
-
-    .ctaAlt{
-      border: 1px solid rgba(212,177,106,.28);
-      background: rgba(212,177,106,.08);
-      color: #f2e7cf;
-    }
-
-    .mini{ font-size:.86rem; color: var(--muted); }
-    code.inline{
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.09);
-      padding: 2px 6px;
-      border-radius: 10px;
-      color: #d9e6ff;
-    }
-
-    /* Museum “Stacks” (for the 3×3 launcher) */
     .launcher{
       display:grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
     }
-    @media (max-width: 980px){
-      .launcher{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @media (max-width: 620px){
-      .launcher{ grid-template-columns: 1fr; }
-    }
+    @media (max-width: 980px){ .launcher{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 620px){ .launcher{ grid-template-columns: 1fr; } }
 
     .stack{
       border:1px solid var(--line);
@@ -229,29 +136,22 @@
         radial-gradient(520px 240px at 90% 10%, rgba(56,189,248,.10), transparent 62%);
       pointer-events:none;
     }
-    .stack .row{
+    .row{
       position:relative;
       display:flex; gap:12px; align-items:center; justify-content:space-between;
       margin-bottom: 10px;
     }
-    .stack .title{
-      position:relative;
-      display:flex; gap:10px; align-items:center;
-    }
-    .stack .title h4{ margin:0; font-size:1.08rem; }
-    .stack .title .tag{
+    .title{ position:relative; display:flex; gap:10px; align-items:center; }
+    .title h4{ margin:0; font-size:1.08rem; }
+    .tag{
       font-size:.78rem;
       color: rgba(212,177,106,.95);
       font-weight:900;
       letter-spacing:.08em;
       text-transform:uppercase;
     }
-    .stack .desc{ position:relative; color: var(--muted); font-size:.92rem; margin: 0 0 10px; }
-    .stack .links{
-      position:relative;
-      display:grid; gap:8px;
-      margin-top: 8px;
-    }
+    .desc{ position:relative; color: var(--muted); font-size:.92rem; margin: 0 0 10px; }
+    .links{ position:relative; display:grid; gap:8px; margin-top: 8px; }
     .lnk{
       display:flex; justify-content:space-between; gap:10px; align-items:center;
       padding: 10px 12px;
@@ -266,6 +166,44 @@
     .lnk:hover{ text-decoration:none; filter: brightness(1.06); }
     .lnk small{ color: var(--muted); font-weight:600; }
 
+    .icon{
+      width:36px; height:36px; border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      display:grid; place-items:center;
+      font-size:1.05rem;
+      user-select:none;
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(13,22,48,.62);
+      box-shadow: 0 10px 24px rgba(0,0,0,.35);
+      padding: 16px 16px 14px;
+    }
+    .panel h4{ margin: 0 0 6px; }
+    .panel p{ margin: 0 0 10px; color: var(--muted); }
+
+    .ctaRow{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 10px; }
+    .cta{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--ok);
+      background: rgba(56,189,248,.08);
+      color: var(--text);
+      font-weight: 750;
+      font-size: .92rem;
+      text-decoration:none;
+    }
+    .cta:hover{ text-decoration:none; filter: brightness(1.06); }
+    .ctaAlt{
+      border: 1px solid rgba(212,177,106,.28);
+      background: rgba(212,177,106,.08);
+      color: #f2e7cf;
+    }
+
     footer{
       margin-top: 30px;
       padding-top: 18px;
@@ -273,329 +211,266 @@
       font-size:.9rem;
       border-top: 1px solid var(--line);
     }
+    code.inline{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.09);
+      padding: 2px 6px;
+      border-radius: 10px;
+      color: #d9e6ff;
+    }
   </style>
 </head>
 
 <body>
-  <!-- TOP BAR -->
   <div class="topbar">
     <div class="inner">
       <div class="brand">
         <div class="seal">A</div>
         <div>
           <h1>Digital Alexandria</h1>
-          <div class="sub">Google Workspace Learning Center • 3×3 App Launcher Museum</div>
+          <div class="sub">FlightLine GI Curriculum • Catalog → 3×3 → Wing → Exhibit</div>
         </div>
       </div>
 
       <nav class="toc" aria-label="Museum Index">
         <a class="chip" href="#catalog"><span>Ⅰ</span> Catalog</a>
         <a class="chip" href="#launcher"><span>Ⅱ</span> 3×3</a>
-        <a class="chip" href="#drive"><span>Ⅲ</span> Drive</a>
-        <a class="chip" href="#gmail"><span>Ⅳ</span> Gmail</a>
-        <a class="chip" href="#calendar"><span>Ⅴ</span> Calendar</a>
-        <a class="chip" href="#docs"><span>Ⅵ</span> Docs</a>
-        <a class="chip" href="#sheets"><span>Ⅶ</span> Sheets</a>
-        <a class="chip" href="#slides"><span>Ⅷ</span> Slides</a>
-        <a class="chip" href="#meet"><span>Ⅸ</span> Meet</a>
-        <a class="chip" href="#chat"><span>Ⅹ</span> Chat</a>
-        <a class="chip" href="#contacts"><span>Ⅺ</span> Contacts</a>
+        <a class="chip" href="#wings"><span>Ⅲ</span> Wings</a>
+        <a class="chip" href="#log"><span>Ⅳ</span> Action Log</a>
       </nav>
     </div>
   </div>
 
   <div class="wrap">
-    <!-- HERO -->
-    <section class="hero" id="top">
-      <h2>The Museum of Alexandria—Digital Edition</h2>
+    <section class="hero" id="catalog">
+      <h2>Digital Alexandria — FlightLine GI Curriculum</h2>
       <p>
-        This is an <strong>official-source index</strong> built on the <strong>Google Workspace Learning Center</strong>.
-        Not tips. Not opinions. Not a “course.” It’s a curated museum map: one catalog, nine wings.
+        This site is the study surface. Voiceflow is the curator. Your Form is the flight recorder.
       </p>
       <div class="law">
-        <strong>Prime Law:</strong> Workspace is infrastructure. Identity is the passport. Apps are wings. Learning Center is the catalog.
+        <strong>Prime Law:</strong> Catalog → 3×3 → Wing → Exhibit → Real Action → Log → Return.
       </div>
       <div class="kicker">
-        <div class="badge">Authority Source: Google Workspace Learning Center</div>
-        <div class="badge">Format: Museum Halls → Wings → Exhibit Links</div>
-        <div class="badge">Goal: Fast mastery through navigation, not memorization</div>
+        <div class="badge">One instruction at a time</div>
+        <div class="badge">Official exhibits only</div>
+        <div class="badge">Always end: “Return to Catalog.”</div>
       </div>
     </section>
 
-    <!-- I. CATALOG -->
-    <section id="catalog">
+    <div class="divider"></div>
+
+    <section id="launcher">
       <div class="hall-title">
-        <h3>Ⅰ • The Grand Catalog</h3>
-        <div class="note">Everything begins (and returns) here.</div>
+        <h3>Ⅱ • 3×3 App Launcher</h3>
+        <div class="note">Choose a wing. Open an exhibit. Complete one real action.</div>
       </div>
 
-      <div class="grid">
-        <div class="card">
-          <div class="cap">
-            <div class="sig">CATALOG</div>
-            <div class="icon">📚</div>
+      <div class="launcher">
+        <div class="stack" id="drive">
+          <div class="row">
+            <div class="title">
+              <div class="icon">🗂️</div>
+              <div><div class="tag">LAND</div><h4>Drive</h4></div>
+            </div>
+            <a class="chip" href="#wings"><span>GO</span> Wings</a>
           </div>
-          <h4>Google Workspace Learning Center (Official)</h4>
-          <p>One entrance to all product wings, cheat sheets, and training paths.</p>
-          <div class="ctaRow">
-            <a class="cta" href="https://support.google.com/a/users/?hl=en" target="_blank" rel="noopener">Enter Learning Center →</a>
-            <a class="cta ctaAlt" href="https://support.google.com/a/users/answer/9389764?hl=en" target="_blank" rel="noopener">Welcome Page →</a>
+          <p class="desc">Storage, structure, access, shared drives.</p>
+          <div class="links">
+            <a class="lnk" href="https://support.google.com/a/users/answer/9282958?p=drive_training&rd=1" target="_blank" rel="noopener">Training & Help <small>official</small></a>
           </div>
-          <p class="mini">Museum rule: don’t “hunt” knowledge—navigate it.</p>
         </div>
 
-        <div class="card">
-          <div class="cap">
-            <div class="sig">REFERENCE HALL</div>
-            <div class="icon">🧭</div>
+        <div class="stack" id="gmail">
+          <div class="row">
+            <div class="title">
+              <div class="icon">✉️</div>
+              <div><div class="tag">SIGNAL</div><h4>Gmail</h4></div>
+            </div>
+            <a class="chip" href="#wings"><span>GO</span> Wings</a>
           </div>
-          <h4>Cheat Sheets & Reference Guides</h4>
-          <p>One page that points to cheat sheets across Workspace apps.</p>
-          <div class="ctaRow">
-            <a class="cta" href="https://support.google.com/a/users/answer/13967034?hl=en" target="_blank" rel="noopener">Open Reference Hall →</a>
+          <p class="desc">Inbox structure, labels, filters, routing.</p>
+          <div class="links">
+            <a class="lnk" href="https://support.google.com/a/users/answer/9259748?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
           </div>
-          <p class="mini">Use this for “quick wins” and classroom handouts.</p>
+        </div>
+
+        <div class="stack" id="calendar">
+          <div class="row">
+            <div class="title">
+              <div class="icon">📅</div>
+              <div><div class="tag">TIME</div><h4>Calendar</h4></div>
+            </div>
+            <a class="chip" href="#wings"><span>GO</span> Wings</a>
+          </div>
+          <p class="desc">Scheduling as infrastructure.</p>
+          <div class="links">
+            <a class="lnk" href="https://support.google.com/a/users/answer/9247501?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
+          </div>
+        </div>
+
+        <div class="stack" id="docs">
+          <div class="row">
+            <div class="title">
+              <div class="icon">📄</div>
+              <div><div class="tag">TEXT</div><h4>Docs</h4></div>
+            </div>
+            <a class="chip" href="#wings"><span>GO</span> Wings</a>
+          </div>
+          <p class="desc">Documents, comments, versions.</p>
+          <div class="links">
+            <a class="lnk" href="https://support.google.com/a/users/answer/9282664?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
+          </div>
+        </div>
+
+        <div class="stack" id="sheets">
+          <div class="row">
+            <div class="title">
+              <div class="icon">📊</div>
+              <div><div class="tag">DATA</div><h4>Sheets</h4></div>
+            </div>
+            <a class="chip" href="#wings"><span>GO</span> Wings</a>
+          </div>
+          <p class="desc">Tables, formulas, analysis.</p>
+          <div class="links">
+            <a class="lnk" href="https://support.google.com/a/users/answer/9282959?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
+          </div>
+        </div>
+
+        <div class="stack" id="slides">
+          <div class="row">
+            <div class="title">
+              <div class="icon">🖼️</div>
+              <div><div class="tag">BRIEF</div><h4>Slides</h4></div>
+            </div>
+            <a class="chip" href="#wings"><span>GO</span> Wings</a>
+          </div>
+          <p class="desc">Presentations and briefing craft.</p>
+          <div class="links">
+            <a class="lnk" href="https://support.google.com/a/users/answer/9282488?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
+          </div>
+        </div>
+
+        <div class="stack" id="meet">
+          <div class="row">
+            <div class="title">
+              <div class="icon">🎥</div>
+              <div><div class="tag">ROOM</div><h4>Meet</h4></div>
+            </div>
+            <a class="chip" href="#wings"><span>GO</span> Wings</a>
+          </div>
+          <p class="desc">Live meetings and controls.</p>
+          <div class="links">
+            <a class="lnk" href="https://support.google.com/a/users/answer/9282720?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
+          </div>
+        </div>
+
+        <div class="stack" id="chat">
+          <div class="row">
+            <div class="title">
+              <div class="icon">💬</div>
+              <div><div class="tag">SPACE</div><h4>Chat</h4></div>
+            </div>
+            <a class="chip" href="#wings"><span>GO</span> Wings</a>
+          </div>
+          <p class="desc">Spaces, threads, persistent teamwork.</p>
+          <div class="links">
+            <a class="lnk" href="https://support.google.com/a/users/answer/9247502?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
+          </div>
+        </div>
+
+        <div class="stack" id="contacts">
+          <div class="row">
+            <div class="title">
+              <div class="icon">👤</div>
+              <div><div class="tag">ROSTER</div><h4>Contacts</h4></div>
+            </div>
+            <a class="chip" href="#wings"><span>GO</span> Wings</a>
+          </div>
+          <p class="desc">Identity adjacency: contacts, labels, groups.</p>
+          <div class="links">
+            <a class="lnk" href="https://support.google.com/a/users/answer/9282487?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
+            <a class="lnk" href="https://support.google.com/a/users/answer/9310345?hl=en" target="_blank" rel="noopener">Get started <small>official</small></a>
+          </div>
         </div>
       </div>
     </section>
 
     <div class="divider"></div>
 
-    <!-- II. 3×3 APP LAUNCHER -->
-    <section id="launcher">
+    <section id="wings">
       <div class="hall-title">
-        <h3>Ⅱ • The 3×3 App Launcher Gallery</h3>
-        <div class="note">Nine wings. Tap any exhibit.</div>
+        <h3>Ⅲ • Wings</h3>
+        <div class="note">Curator path: Catalog → 3×3 → Wing → Exhibit → Action → Log.</div>
       </div>
 
-      <div class="launcher">
-        <!-- DRIVE -->
-        <div class="stack">
-          <div class="row">
-            <div class="title">
-              <div class="icon">🗂️</div>
-              <div>
-                <div class="tag">LAND</div>
-                <h4>Drive</h4>
-              </div>
-            </div>
-            <a class="chip" href="#drive"><span>GO</span> Wing</a>
-          </div>
-          <p class="desc">Storage, structure, access, shared drives—your land registry.</p>
-          <div class="links">
-            <a class="lnk" href="https://support.google.com/a/users/answer/9282958?p=drive_training&rd=1" target="_blank" rel="noopener">Training & Help <small>official</small></a>
-            <a class="lnk" href="https://support.google.com/a/users/answer/9300017?hl=en" target="_blank" rel="noopener">Cheat Sheet <small>reference</small></a>
-            <a class="lnk" href="https://support.google.com/a/users/answer/9310246?hl=en" target="_blank" rel="noopener">“What you can do” <small>quick start</small></a>
-          </div>
-        </div>
-
-        <!-- GMAIL -->
-        <div class="stack">
-          <div class="row">
-            <div class="title">
-              <div class="icon">✉️</div>
-              <div>
-                <div class="tag">SIGNAL</div>
-                <h4>Gmail</h4>
-              </div>
-            </div>
-            <a class="chip" href="#gmail"><span>GO</span> Wing</a>
-          </div>
-          <p class="desc">Inbox architecture, organization, and controlled communication.</p>
-          <div class="links">
-            <a class="lnk" href="https://support.google.com/a/users/answer/9259748?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
-            <a class="lnk" href="https://support.google.com/a/users/answer/9789873?co=GENIE.Platform%3DDesktop&hl=en" target="_blank" rel="noopener">Cheat Sheet <small>reference</small></a>
-            <a class="lnk" href="https://support.google.com/a/users/answer/9297685?hl=en" target="_blank" rel="noopener">“What you can do” <small>quick start</small></a>
-          </div>
-        </div>
-
-        <!-- CALENDAR -->
-        <div class="stack">
-          <div class="row">
-            <div class="title">
-              <div class="icon">📅</div>
-              <div>
-                <div class="tag">TIME</div>
-                <h4>Calendar</h4>
-              </div>
-            </div>
-            <a class="chip" href="#calendar"><span>GO</span> Wing</a>
-          </div>
-          <p class="desc">Time governance: events, access, scheduling, shared calendars.</p>
-          <div class="links">
-            <a class="lnk" href="https://support.google.com/a/users/answer/9247501?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
-            <a class="lnk" href="https://support.google.com/a/users/answer/9290350?hl=en" target="_blank" rel="noopener">Cheat Sheet <small>reference</small></a>
-            <a class="lnk" href="https://support.google.com/a/users/answer/9302892?hl=en" target="_blank" rel="noopener">“What you can do” <small>quick start</small></a>
-          </div>
-        </div>
-
-        <!-- DOCS -->
-        <div class="stack">
-          <div class="row">
-            <div class="title">
-              <div class="icon">📄</div>
-              <div>
-                <div class="tag">TEXT</div>
-                <h4>Docs</h4>
-              </div>
-            </div>
-            <a class="chip" href="#docs"><span>GO</span> Wing</a>
-          </div>
-          <p class="desc">Writing, collaboration, comments, versions—document authority.</p>
-          <div class="links">
-            <a class="lnk" href="https://support.google.com/a/users/answer/9282664?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
-            <a class="lnk" href="https://support.google.com/a/users/answer/9299931?hl=en" target="_blank" rel="noopener">Cheat Sheet <small>reference</small></a>
-            <a class="lnk" href="https://support.google.com/a/users/answer/9300503?hl=en" target="_blank" rel="noopener">“What you can do” <small>quick start</small></a>
-          </div>
-        </div>
-
-        <!-- SHEETS -->
-        <div class="stack">
-          <div class="row">
-            <div class="title">
-              <div class="icon">📊</div>
-              <div>
-                <div class="tag">DATA</div>
-                <h4>Sheets</h4>
-              </div>
-            </div>
-            <a class="chip" href="#sheets"><span>GO</span> Wing</a>
-          </div>
-          <p class="desc">Tables, formulas, analysis—your computation wing.</p>
-          <div class="links">
-            <a class="lnk" href="https://support.google.com/a/users/answer/9282959?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
-            <a class="lnk" href="https://support.google.com/a/users/answer/9300022?hl=en" target="_blank" rel="noopener">Cheat Sheet <small>reference</small></a>
-          </div>
-        </div>
-
-        <!-- SLIDES -->
-        <div class="stack">
-          <div class="row">
-            <div class="title">
-              <div class="icon">🖼️</div>
-              <div>
-                <div class="tag">BRIEF</div>
-                <h4>Slides</h4>
-              </div>
-            </div>
-            <a class="chip" href="#slides"><span>GO</span> Wing</a>
-          </div>
-          <p class="desc">Presentation doctrine: templates, theme, story, delivery.</p>
-          <div class="links">
-            <a class="lnk" href="https://support.google.com/a/users/answer/9282488?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
-            <a class="lnk" href="https://support.google.com/a/users/answer/9300133?hl=en" target="_blank" rel="noopener">Cheat Sheet <small>reference</small></a>
-          </div>
-        </div>
-
-        <!-- MEET -->
-        <div class="stack">
-          <div class="row">
-            <div class="title">
-              <div class="icon">🎥</div>
-              <div>
-                <div class="tag">ROOM</div>
-                <h4>Meet</h4>
-              </div>
-            </div>
-            <a class="chip" href="#meet"><span>GO</span> Wing</a>
-          </div>
-          <p class="desc">Meetings, control, participation—live operations.</p>
-          <div class="links">
-            <a class="lnk" href="https://support.google.com/a/users/answer/9282720?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
-            <a class="lnk" href="https://support.google.com/a/users/answer/9300131?hl=en" target="_blank" rel="noopener">Cheat Sheet <small>reference</small></a>
-            <a class="lnk" href="https://support.google.com/a/users/answer/9847245?hl=en" target="_blank" rel="noopener">Hold your first meeting <small>quick start</small></a>
-          </div>
-        </div>
-
-        <!-- CHAT -->
-        <div class="stack">
-          <div class="row">
-            <div class="title">
-              <div class="icon">💬</div>
-              <div>
-                <div class="tag">SPACE</div>
-                <h4>Chat</h4>
-              </div>
-            </div>
-            <a class="chip" href="#chat"><span>GO</span> Wing</a>
-          </div>
-          <p class="desc">Spaces, threads, teamwork—persistent collaboration zones.</p>
-          <div class="links">
-            <a class="lnk" href="https://support.google.com/a/users/answer/9247502?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
-            <a class="lnk" href="https://support.google.com/a/users/answer/9299928?hl=en" target="_blank" rel="noopener">Cheat Sheet <small>reference</small></a>
-            <a class="lnk" href="https://support.google.com/a/users/answer/11219858?hl=en" target="_blank" rel="noopener">Use spaces <small>core skill</small></a>
-          </div>
-        </div>
-
-        <!-- CONTACTS -->
-        <div class="stack">
-          <div class="row">
-            <div class="title">
-              <div class="icon">👤</div>
-              <div>
-                <div class="tag">ROSTER</div>
-                <h4>Contacts</h4>
-              </div>
-            </div>
-            <a class="chip" href="#contacts"><span>GO</span> Wing</a>
-          </div>
-          <p class="desc">Identity adjacency: contacts, labels, groups—your people registry.</p>
-          <div class="links">
-            <a class="lnk" href="https://support.google.com/a/users/answer/9282487?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
-            <a class="lnk" href="https://support.google.com/a/users/answer/9310345?hl=en" target="_blank" rel="noopener">Get started with Contacts <small>quick start</small></a>
-          </div>
+      <div class="panel">
+        <h4>Curator Rule</h4>
+        <p>
+          Complete <strong>one real action</strong> per stop, then log it.
+          Teleport helper: <code class="inline">ALEXANDRIA_GO("#contacts")</code>
+        </p>
+        <div class="ctaRow">
+          <a class="cta" href="#launcher">Open 3×3 Gallery →</a>
+          <a class="cta ctaAlt" href="#log">Open Action Log →</a>
         </div>
       </div>
-
-      <p class="mini" style="margin-top:14px;">
-        Teaching move: every scheduled email should include a “Return to Alexandria” link → this page, and a single directive like
-        <code class="inline">Go: 3×3 → Drive → Training & Help</code>.
-      </p>
     </section>
 
-    <!-- FOOTER -->
-    <footer>
-      <div><strong>Digital Alexandria</strong> — 3×3 index to the official <strong>Google Workspace Learning Center</strong>.</div>
-      <div class="mini" style="margin-top:6px;">
-        All exhibits link to official Google sources. This page is the museum map, not the authority itself.
+    <div class="divider"></div>
+
+    <section id="log">
+      <div class="hall-title">
+        <h3>Ⅳ • Infrastructure Action Log</h3>
+        <div class="note">Not a quiz. A flight recorder for real actions.</div>
       </div>
+
+      <div class="panel">
+        <h4>Log your motion</h4>
+        <p>After you complete your action, open the log and submit.</p>
+        <div class="ctaRow">
+          <a class="cta" href="FORM_LINK" target="_blank" rel="noopener">Open Action Log Form →</a>
+          <a class="cta ctaAlt" href="#catalog">Return to Catalog →</a>
+        </div>
+        <p style="margin-top:10px; color:var(--muted);">
+          Directive format: <code class="inline">Catalog → 3×3 → Wing → Exhibit → Do 1 action → Log</code>
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <div><strong>Digital Alexandria</strong> — FlightLine GI Curriculum Museum Map.</div>
+      <div style="margin-top:6px;">Voiceflow = Curator. Form = Action Log. Site = Study Surface.</div>
     </footer>
   </div>
 
   <!-- =========================================================
-       VOICEFLOW CURATOR WIDGET (CORRECT PLACEMENT)
-       Put this at the END of <body>, not inside <style>.
-       Replace VF_WIDGET_SRC and VF_PROJECT_ID with your real values.
+       VOICEFLOW CURATOR WIDGET — PERFECT POSITION (BOTTOM)
+       Replace:
+       - VF_WIDGET_SRC
+       - VF_PROJECT_ID
   ========================================================== -->
   <script>
-    // Optional helper for curator “teleport” to sections
     window.ALEXANDRIA_GO = function(hash){
       if(!hash) return;
       if(!hash.startsWith("#")) hash = "#" + hash;
       location.hash = hash;
-      const el = document.querySelector(hash);
-      if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+      document.querySelector(hash)?.scrollIntoView({behavior:"smooth", block:"start"});
     };
   </script>
 
-  <!-- Replace this with the real Voiceflow widget script URL -->
+  <!-- Paste your Voiceflow embed script URL here -->
   <script src="VF_WIDGET_SRC"></script>
 
+  <!-- Paste your Voiceflow init here (or keep this if your embed uses voiceflow.chat.load) -->
   <script>
-    // Replace this with Voiceflow's exact init snippet (varies by widget version).
-    // This keeps your placeholders but avoids HTML/CSS placement errors.
-    try {
-      window.voiceflow?.chat?.load?.({
-        projectID: "VF_PROJECT_ID",
-        versionID: "production",
-        assistant: {
-          title: "Curator of Digital Alexandria",
-          description: "Choose a wing. I will guide you exhibit-by-exhibit."
-        }
-      });
-    } catch (e) {
-      // No-op if the widget script isn't loaded yet / placeholder in use.
-    }
+    window.voiceflow?.chat?.load?.({
+      projectID: "VF_PROJECT_ID",
+      versionID: "production",
+      assistant: {
+        title: "Curator of Digital Alexandria",
+        description: "Catalog → 3×3 → Wing → Exhibit. One instruction at a time. Return to Catalog."
+      }
+    });
   </script>
 </body>
 </html>

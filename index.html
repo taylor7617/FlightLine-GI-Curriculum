@@ -3,20 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FlightLine GI Curriculum | Digital Alexandria Museum</title>
+  <title>FlightLine GI Curriculum | Digital Alexandria</title>
 
-  <meta name="description" content="Digital Alexandria: FlightLine GI Curriculum museum map. Catalog → 3×3 → Wing → Exhibit. Official learning links only." />
+  <meta name="description" content="Digital Alexandria: FlightLine GI Curriculum museum map. Catalog → 3×3 → Wing → Exhibit → Action Log. Official learning links only." />
   <meta name="theme-color" content="#0b1020" />
 
   <style>
     :root{
-      --bg0:#070a12; --bg1:#0b1020;
-      --panel:#0d1630; --panel2:#0a1329;
-      --text:#e8edf7; --muted:#9aa7c1;
-      --gold:#d4b16a; --ink:#38bdf8;
+      --bg0:#070a12;
+      --bg1:#0b1020;
+      --panel:#0d1630;
+      --text:#e8edf7;
+      --muted:#9aa7c1;
+      --gold:#d4b16a;
+      --ink:#38bdf8;
       --line:rgba(255,255,255,.10);
       --shadow: 0 16px 40px rgba(0,0,0,.45);
       --ok: rgba(56,189,248,.35);
+      --warn: rgba(212,177,106,.24);
     }
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
@@ -33,6 +37,7 @@
     a{ color: var(--ink); text-decoration:none; }
     a:hover{ text-decoration:underline; }
 
+    /* Top bar */
     .topbar{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(12px);
@@ -72,16 +77,17 @@
     }
     .chip span{ color: var(--gold); font-weight:900; }
 
-    .wrap{ max-width:1180px; margin:0 auto; padding: 28px 18px 90px; }
+    .wrap{ max-width:1180px; margin:0 auto; padding: 26px 18px 90px; }
 
+    /* Hero */
     .hero{
       border:1px solid var(--line);
       border-radius:20px;
       background: linear-gradient(180deg, rgba(13,22,48,.72), rgba(10,19,41,.56));
       box-shadow: var(--shadow);
-      padding: 26px 22px;
+      padding: 24px 20px;
     }
-    .hero h2{ margin:0 0 10px; font-size:2.05rem; letter-spacing:-.02em; }
+    .hero h2{ margin:0 0 10px; font-size:2.0rem; letter-spacing:-.02em; }
     .hero p{ margin: 10px 0; color: var(--muted); }
     .law{
       margin-top: 14px;
@@ -100,17 +106,43 @@
       color: var(--muted);
       font-size:.86rem;
     }
+    .divider{ margin: 20px 0 0; border-top: 1px solid var(--line); }
 
-    .divider{ margin: 22px 0 0; border-top: 1px solid var(--line); }
-
+    /* Sections */
     .hall-title{
       display:flex; align-items:baseline; justify-content:space-between; gap:12px;
-      margin: 26px 2px 12px;
+      margin: 24px 2px 12px;
       flex-wrap:wrap;
     }
     .hall-title h3{ margin:0; font-size:1.25rem; color: var(--gold); letter-spacing:.02em; }
     .hall-title .note{ color: var(--muted); font-size:.94rem; }
 
+    /* Buttons */
+    .ctaRow{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 10px; }
+    .cta{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--ok);
+      background: rgba(56,189,248,.08);
+      color: var(--text);
+      font-weight: 780;
+      font-size: .92rem;
+      text-decoration:none;
+    }
+    .cta:hover{ text-decoration:none; filter: brightness(1.06); }
+    .ctaAlt{
+      border: 1px solid rgba(212,177,106,.28);
+      background: rgba(212,177,106,.08);
+      color: #f2e7cf;
+    }
+    .ctaWarn{
+      border: 1px solid var(--warn);
+      background: rgba(212,177,106,.06);
+      color: #f2e7cf;
+    }
+
+    /* 3×3 */
     .launcher{
       display:grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -175,6 +207,7 @@
       user-select:none;
     }
 
+    /* Panels */
     .panel{
       border:1px solid var(--line);
       border-radius: 20px;
@@ -185,23 +218,12 @@
     .panel h4{ margin: 0 0 6px; }
     .panel p{ margin: 0 0 10px; color: var(--muted); }
 
-    .ctaRow{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 10px; }
-    .cta{
-      display:inline-flex; align-items:center; gap:8px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid var(--ok);
-      background: rgba(56,189,248,.08);
-      color: var(--text);
-      font-weight: 750;
-      font-size: .92rem;
-      text-decoration:none;
-    }
-    .cta:hover{ text-decoration:none; filter: brightness(1.06); }
-    .ctaAlt{
-      border: 1px solid rgba(212,177,106,.28);
-      background: rgba(212,177,106,.08);
-      color: #f2e7cf;
+    code.inline{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.09);
+      padding: 2px 6px;
+      border-radius: 10px;
+      color: #d9e6ff;
     }
 
     footer{
@@ -211,17 +233,28 @@
       font-size:.9rem;
       border-top: 1px solid var(--line);
     }
-    code.inline{
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.09);
-      padding: 2px 6px;
-      border-radius: 10px;
-      color: #d9e6ff;
+
+    /* Tiny “Curator status” pill */
+    .statusPill{
+      display:inline-flex; align-items:center; gap:8px;
+      border:1px solid rgba(56,189,248,.22);
+      background: rgba(56,189,248,.06);
+      border-radius: 999px;
+      padding: 8px 10px;
+      color: var(--muted);
+      font-size:.86rem;
+      margin-top: 10px;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: rgba(56,189,248,.9);
+      box-shadow: 0 0 0 4px rgba(56,189,248,.12);
     }
   </style>
 </head>
 
 <body>
+  <!-- TOP BAR -->
   <div class="topbar">
     <div class="inner">
       <div class="brand">
@@ -235,44 +268,54 @@
       <nav class="toc" aria-label="Museum Index">
         <a class="chip" href="#catalog"><span>Ⅰ</span> Catalog</a>
         <a class="chip" href="#launcher"><span>Ⅱ</span> 3×3</a>
-        <a class="chip" href="#wings"><span>Ⅲ</span> Wings</a>
+        <a class="chip" href="#mission"><span>Ⅲ</span> Mission</a>
         <a class="chip" href="#log"><span>Ⅳ</span> Action Log</a>
+        <a class="chip" href="#contacts"><span>Ⅴ</span> Contacts Wing</a>
       </nav>
     </div>
   </div>
 
   <div class="wrap">
+    <!-- CATALOG -->
     <section class="hero" id="catalog">
       <h2>Digital Alexandria — FlightLine GI Curriculum</h2>
       <p>
-        This site is the study surface. Voiceflow is the curator. Your Form is the flight recorder.
+        Study surface = this site. Curator = Voiceflow. Flight recorder = your Form → Sheet ledger.
       </p>
       <div class="law">
         <strong>Prime Law:</strong> Catalog → 3×3 → Wing → Exhibit → Real Action → Log → Return.
       </div>
       <div class="kicker">
         <div class="badge">One instruction at a time</div>
-        <div class="badge">Official exhibits only</div>
+        <div class="badge">Log real actions (not opinions)</div>
         <div class="badge">Always end: “Return to Catalog.”</div>
+      </div>
+
+      <div class="statusPill" id="curatorStatus">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Curator ready: open the Voiceflow chat bubble to begin.</span>
+      </div>
+
+      <div class="ctaRow">
+        <a class="cta" href="#launcher">Enter 3×3 Gallery →</a>
+        <a class="cta ctaAlt" href="#log">Open Action Log →</a>
       </div>
     </section>
 
     <div class="divider"></div>
 
+    <!-- 3×3 -->
     <section id="launcher">
       <div class="hall-title">
         <h3>Ⅱ • 3×3 App Launcher</h3>
-        <div class="note">Choose a wing. Open an exhibit. Complete one real action.</div>
+        <div class="note">Nine wings. Choose one exhibit. Do one action. Log it.</div>
       </div>
 
       <div class="launcher">
         <div class="stack" id="drive">
           <div class="row">
-            <div class="title">
-              <div class="icon">🗂️</div>
-              <div><div class="tag">LAND</div><h4>Drive</h4></div>
-            </div>
-            <a class="chip" href="#wings"><span>GO</span> Wings</a>
+            <div class="title"><div class="icon">🗂️</div><div><div class="tag">LAND</div><h4>Drive</h4></div></div>
+            <a class="chip" href="#mission"><span>GO</span> Mission</a>
           </div>
           <p class="desc">Storage, structure, access, shared drives.</p>
           <div class="links">
@@ -282,11 +325,8 @@
 
         <div class="stack" id="gmail">
           <div class="row">
-            <div class="title">
-              <div class="icon">✉️</div>
-              <div><div class="tag">SIGNAL</div><h4>Gmail</h4></div>
-            </div>
-            <a class="chip" href="#wings"><span>GO</span> Wings</a>
+            <div class="title"><div class="icon">✉️</div><div><div class="tag">SIGNAL</div><h4>Gmail</h4></div></div>
+            <a class="chip" href="#mission"><span>GO</span> Mission</a>
           </div>
           <p class="desc">Inbox structure, labels, filters, routing.</p>
           <div class="links">
@@ -296,11 +336,8 @@
 
         <div class="stack" id="calendar">
           <div class="row">
-            <div class="title">
-              <div class="icon">📅</div>
-              <div><div class="tag">TIME</div><h4>Calendar</h4></div>
-            </div>
-            <a class="chip" href="#wings"><span>GO</span> Wings</a>
+            <div class="title"><div class="icon">📅</div><div><div class="tag">TIME</div><h4>Calendar</h4></div></div>
+            <a class="chip" href="#mission"><span>GO</span> Mission</a>
           </div>
           <p class="desc">Scheduling as infrastructure.</p>
           <div class="links">
@@ -310,11 +347,8 @@
 
         <div class="stack" id="docs">
           <div class="row">
-            <div class="title">
-              <div class="icon">📄</div>
-              <div><div class="tag">TEXT</div><h4>Docs</h4></div>
-            </div>
-            <a class="chip" href="#wings"><span>GO</span> Wings</a>
+            <div class="title"><div class="icon">📄</div><div><div class="tag">TEXT</div><h4>Docs</h4></div></div>
+            <a class="chip" href="#mission"><span>GO</span> Mission</a>
           </div>
           <p class="desc">Documents, comments, versions.</p>
           <div class="links">
@@ -324,11 +358,8 @@
 
         <div class="stack" id="sheets">
           <div class="row">
-            <div class="title">
-              <div class="icon">📊</div>
-              <div><div class="tag">DATA</div><h4>Sheets</h4></div>
-            </div>
-            <a class="chip" href="#wings"><span>GO</span> Wings</a>
+            <div class="title"><div class="icon">📊</div><div><div class="tag">DATA</div><h4>Sheets</h4></div></div>
+            <a class="chip" href="#mission"><span>GO</span> Mission</a>
           </div>
           <p class="desc">Tables, formulas, analysis.</p>
           <div class="links">
@@ -338,11 +369,8 @@
 
         <div class="stack" id="slides">
           <div class="row">
-            <div class="title">
-              <div class="icon">🖼️</div>
-              <div><div class="tag">BRIEF</div><h4>Slides</h4></div>
-            </div>
-            <a class="chip" href="#wings"><span>GO</span> Wings</a>
+            <div class="title"><div class="icon">🖼️</div><div><div class="tag">BRIEF</div><h4>Slides</h4></div></div>
+            <a class="chip" href="#mission"><span>GO</span> Mission</a>
           </div>
           <p class="desc">Presentations and briefing craft.</p>
           <div class="links">
@@ -352,11 +380,8 @@
 
         <div class="stack" id="meet">
           <div class="row">
-            <div class="title">
-              <div class="icon">🎥</div>
-              <div><div class="tag">ROOM</div><h4>Meet</h4></div>
-            </div>
-            <a class="chip" href="#wings"><span>GO</span> Wings</a>
+            <div class="title"><div class="icon">🎥</div><div><div class="tag">ROOM</div><h4>Meet</h4></div></div>
+            <a class="chip" href="#mission"><span>GO</span> Mission</a>
           </div>
           <p class="desc">Live meetings and controls.</p>
           <div class="links">
@@ -366,11 +391,8 @@
 
         <div class="stack" id="chat">
           <div class="row">
-            <div class="title">
-              <div class="icon">💬</div>
-              <div><div class="tag">SPACE</div><h4>Chat</h4></div>
-            </div>
-            <a class="chip" href="#wings"><span>GO</span> Wings</a>
+            <div class="title"><div class="icon">💬</div><div><div class="tag">SPACE</div><h4>Chat</h4></div></div>
+            <a class="chip" href="#mission"><span>GO</span> Mission</a>
           </div>
           <p class="desc">Spaces, threads, persistent teamwork.</p>
           <div class="links">
@@ -380,11 +402,8 @@
 
         <div class="stack" id="contacts">
           <div class="row">
-            <div class="title">
-              <div class="icon">👤</div>
-              <div><div class="tag">ROSTER</div><h4>Contacts</h4></div>
-            </div>
-            <a class="chip" href="#wings"><span>GO</span> Wings</a>
+            <div class="title"><div class="icon">👤</div><div><div class="tag">ROSTER</div><h4>Contacts</h4></div></div>
+            <a class="chip" href="#mission"><span>GO</span> Mission</a>
           </div>
           <p class="desc">Identity adjacency: contacts, labels, groups.</p>
           <div class="links">
@@ -397,78 +416,112 @@
 
     <div class="divider"></div>
 
-    <section id="wings">
+    <!-- MISSION -->
+    <section id="mission">
       <div class="hall-title">
-        <h3>Ⅲ • Wings</h3>
-        <div class="note">Curator path: Catalog → 3×3 → Wing → Exhibit → Action → Log.</div>
+        <h3>Ⅲ • The Mission</h3>
+        <div class="note">This is not a quiz. It’s task completion + logging.</div>
       </div>
 
       <div class="panel">
-        <h4>Curator Rule</h4>
+        <h4>How every session works (CLIME)</h4>
         <p>
-          Complete <strong>one real action</strong> per stop, then log it.
-          Teleport helper: <code class="inline">ALEXANDRIA_GO("#contacts")</code>
+          <strong>Catalog → 3×3 → Wing → Exhibit → Real Action → Log → Return.</strong><br/>
+          Your Voiceflow curator should only issue <strong>one instruction</strong>, then confirm, then proceed.
         </p>
         <div class="ctaRow">
-          <a class="cta" href="#launcher">Open 3×3 Gallery →</a>
+          <a class="cta" href="#catalog">Return to Catalog →</a>
           <a class="cta ctaAlt" href="#log">Open Action Log →</a>
+          <a class="cta ctaWarn" href="#contacts">Jump to Contacts Wing →</a>
         </div>
+        <p style="margin-top:10px; color:var(--muted);">
+          Example directive: <code class="inline">Catalog → 3×3 → Contacts → Get started → Add 1 contact → Log</code>
+        </p>
       </div>
     </section>
 
     <div class="divider"></div>
 
+    <!-- ACTION LOG -->
     <section id="log">
       <div class="hall-title">
         <h3>Ⅳ • Infrastructure Action Log</h3>
-        <div class="note">Not a quiz. A flight recorder for real actions.</div>
+        <div class="note">Your Form is the flight recorder. Your Sheet is the ledger.</div>
       </div>
 
       <div class="panel">
-        <h4>Log your motion</h4>
-        <p>After you complete your action, open the log and submit.</p>
+        <h4>Submit your completed action</h4>
+        <p>
+          Complete one real action, then submit the log. The curator can verify progress by reading the Sheet.
+        </p>
+
         <div class="ctaRow">
-          <a class="cta" href="FORM_LINK" target="_blank" rel="noopener">Open Action Log Form →</a>
-          <a class="cta ctaAlt" href="#catalog">Return to Catalog →</a>
+          <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSdUukhQdV_zvPGRUKMHE8hRTk2HqWPz5wc3C7Fih2oB-gLHmw/viewform?usp=publish-editor" target="_blank" rel="noopener">
+            Open Action Log Form →
+          </a>
+
+          <!-- This is useful for YOU (admin). Keep or remove. -->
+          <a class="cta ctaAlt" href="https://docs.google.com/spreadsheets/d/1CSN2Gw1VK6izyBt5YrjYpYGqdXRzoLhONQvFifr6aAw/edit?usp=sharing" target="_blank" rel="noopener">
+            Open Ledger Sheet →
+          </a>
+
+          <a class="cta ctaWarn" href="#catalog">Return to Catalog →</a>
         </div>
+
         <p style="margin-top:10px; color:var(--muted);">
-          Directive format: <code class="inline">Catalog → 3×3 → Wing → Exhibit → Do 1 action → Log</code>
+          If you want “no human,” the curator asks for: Wing, Exhibit, Action Completed, Proof note → then logs to Sheets automatically.
         </p>
       </div>
     </section>
 
     <footer>
       <div><strong>Digital Alexandria</strong> — FlightLine GI Curriculum Museum Map.</div>
-      <div style="margin-top:6px;">Voiceflow = Curator. Form = Action Log. Site = Study Surface.</div>
+      <div style="margin-top:6px;">
+        Voiceflow = Curator • Google Form = Action Log • Google Sheet = Ledger.
+      </div>
     </footer>
   </div>
 
   <!-- =========================================================
        VOICEFLOW CURATOR WIDGET — PERFECT POSITION (BOTTOM)
-       Replace:
-       - VF_WIDGET_SRC
-       - VF_PROJECT_ID
+       Replace placeholders with your Voiceflow Web Chat embed values.
   ========================================================== -->
+
   <script>
+    // Curator “teleport” helper (used by Voiceflow instructions)
     window.ALEXANDRIA_GO = function(hash){
       if(!hash) return;
       if(!hash.startsWith("#")) hash = "#" + hash;
       location.hash = hash;
       document.querySelector(hash)?.scrollIntoView({behavior:"smooth", block:"start"});
     };
+
+    // Optional: give Voiceflow a clean “page context”
+    window.FLIGHTLINE_CONTEXT = {
+      site: "FlightLine GI Curriculum",
+      doctrine: "Catalog → 3×3 → Wing → Exhibit → Real Action → Log → Return",
+      actionLogForm: "https://docs.google.com/forms/d/e/1FAIpQLSdUukhQdV_zvPGRUKMHE8hRTk2HqWPz5wc3C7Fih2oB-gLHmw/viewform?usp=publish-editor",
+      ledgerSheet: "https://docs.google.com/spreadsheets/d/1CSN2Gw1VK6izyBt5YrjYpYGqdXRzoLhONQvFifr6aAw/edit?usp=sharing"
+    };
   </script>
 
-  <!-- Paste your Voiceflow embed script URL here -->
+  <!-- 1) Paste your Voiceflow widget script URL below -->
   <script src="VF_WIDGET_SRC"></script>
 
-  <!-- Paste your Voiceflow init here (or keep this if your embed uses voiceflow.chat.load) -->
+  <!-- 2) Paste your Voiceflow init below OR replace this with the exact snippet Voiceflow gives you -->
   <script>
+    // If your embed snippet differs, delete this init and paste Voiceflow's official init as-is.
     window.voiceflow?.chat?.load?.({
       projectID: "VF_PROJECT_ID",
       versionID: "production",
       assistant: {
         title: "Curator of Digital Alexandria",
         description: "Catalog → 3×3 → Wing → Exhibit. One instruction at a time. Return to Catalog."
+      },
+      // If your widget supports custom variables, you can pass your context
+      // (Some versions use 'variables', others do not—safe to remove if it errors.)
+      variables: {
+        FLIGHTLINE_CONTEXT: JSON.stringify(window.FLIGHTLINE_CONTEXT || {})
       }
     });
   </script>

@@ -5,18 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FlightLine GI Curriculum | Digital Alexandria</title>
 
-  <meta name="description" content="Digital Alexandria: FlightLine GI Curriculum museum map. Catalog → 3×3 → Wing → Exhibit → Action Log. Official learning links only." />
+  <meta name="description" content="Digital Alexandria: FlightLine GI Curriculum museum map. Catalog → 3×3 → Wing → Exhibit → Real Action → Log → Return. Official learning links only." />
   <meta name="theme-color" content="#0b1020" />
 
   <style>
     :root{
-      --bg0:#070a12;
-      --bg1:#0b1020;
-      --panel:#0d1630;
-      --text:#e8edf7;
-      --muted:#9aa7c1;
-      --gold:#d4b16a;
-      --ink:#38bdf8;
+      --bg0:#070a12; --bg1:#0b1020;
+      --panel:#0d1630; --text:#e8edf7; --muted:#9aa7c1;
+      --gold:#d4b16a; --ink:#38bdf8;
       --line:rgba(255,255,255,.10);
       --shadow: 0 16px 40px rgba(0,0,0,.45);
       --ok: rgba(56,189,248,.35);
@@ -37,7 +33,6 @@
     a{ color: var(--ink); text-decoration:none; }
     a:hover{ text-decoration:underline; }
 
-    /* Top bar */
     .topbar{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(12px);
@@ -79,7 +74,6 @@
 
     .wrap{ max-width:1180px; margin:0 auto; padding: 26px 18px 90px; }
 
-    /* Hero */
     .hero{
       border:1px solid var(--line);
       border-radius:20px;
@@ -106,9 +100,9 @@
       color: var(--muted);
       font-size:.86rem;
     }
+
     .divider{ margin: 20px 0 0; border-top: 1px solid var(--line); }
 
-    /* Sections */
     .hall-title{
       display:flex; align-items:baseline; justify-content:space-between; gap:12px;
       margin: 24px 2px 12px;
@@ -117,7 +111,6 @@
     .hall-title h3{ margin:0; font-size:1.25rem; color: var(--gold); letter-spacing:.02em; }
     .hall-title .note{ color: var(--muted); font-size:.94rem; }
 
-    /* Buttons */
     .ctaRow{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 10px; }
     .cta{
       display:inline-flex; align-items:center; gap:8px;
@@ -126,9 +119,10 @@
       border: 1px solid var(--ok);
       background: rgba(56,189,248,.08);
       color: var(--text);
-      font-weight: 780;
+      font-weight: 800;
       font-size: .92rem;
       text-decoration:none;
+      cursor:pointer;
     }
     .cta:hover{ text-decoration:none; filter: brightness(1.06); }
     .ctaAlt{
@@ -142,7 +136,6 @@
       color: #f2e7cf;
     }
 
-    /* 3×3 */
     .launcher{
       display:grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -207,7 +200,6 @@
       user-select:none;
     }
 
-    /* Panels */
     .panel{
       border:1px solid var(--line);
       border-radius: 20px;
@@ -234,7 +226,6 @@
       border-top: 1px solid var(--line);
     }
 
-    /* Tiny “Curator status” pill */
     .statusPill{
       display:inline-flex; align-items:center; gap:8px;
       border:1px solid rgba(56,189,248,.22);
@@ -250,11 +241,112 @@
       background: rgba(56,189,248,.9);
       box-shadow: 0 0 0 4px rgba(56,189,248,.12);
     }
+
+    /* ===========================
+       MODAL (FORM OVERLAY)
+       =========================== */
+    .lockScroll{ overflow:hidden; }
+
+    .modal{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.62);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 9998;
+    }
+    .modal[data-open="true"]{ display:flex; }
+
+    .modalCard{
+      width: min(980px, 100%);
+      max-height: 92vh;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(13,22,48,.92), rgba(10,19,41,.88));
+      box-shadow: 0 24px 80px rgba(0,0,0,.55);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modalHead{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .modalHead .left{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      min-width: 0;
+    }
+    .modalHead h5{
+      margin:0;
+      font-size: 1.0rem;
+      letter-spacing: .01em;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .modalHead .sub{
+      margin:0;
+      color: var(--muted);
+      font-size: .88rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .modalActions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .xbtn{
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 8px 10px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .xbtn:hover{ filter: brightness(1.06); }
+
+    .modalBody{
+      flex: 1;
+      min-height: 420px;
+      background: rgba(0,0,0,.18);
+    }
+    .modalBody iframe{
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .modalFoot{
+      padding: 10px 14px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .86rem;
+      display:flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
   </style>
 </head>
 
 <body>
-  <!-- TOP BAR -->
   <div class="topbar">
     <div class="inner">
       <div class="brand">
@@ -268,147 +360,197 @@
       <nav class="toc" aria-label="Museum Index">
         <a class="chip" href="#catalog"><span>Ⅰ</span> Catalog</a>
         <a class="chip" href="#launcher"><span>Ⅱ</span> 3×3</a>
-        <a class="chip" href="#mission"><span>Ⅲ</span> Mission</a>
-        <a class="chip" href="#log"><span>Ⅳ</span> Action Log</a>
-        <a class="chip" href="#contacts"><span>Ⅴ</span> Contacts Wing</a>
+        <a class="chip" href="#log"><span>Ⅲ</span> Log</a>
+        <a class="chip" href="#rules"><span>Ⅳ</span> Rules</a>
       </nav>
     </div>
   </div>
 
   <div class="wrap">
-    <!-- CATALOG -->
     <section class="hero" id="catalog">
       <h2>Digital Alexandria — FlightLine GI Curriculum</h2>
       <p>
-        Study surface = this site. Curator = Voiceflow. Flight recorder = your Form → Sheet ledger.
+        Study surface = this site. Curator logic = Voiceflow. Voice curator = Jason Summerfall (ElevenLabs).
+        Proof = Action Log Form → Ledger Sheet.
       </p>
+
       <div class="law">
         <strong>Prime Law:</strong> Catalog → 3×3 → Wing → Exhibit → Real Action → Log → Return.
       </div>
+
       <div class="kicker">
         <div class="badge">One instruction at a time</div>
-        <div class="badge">Log real actions (not opinions)</div>
-        <div class="badge">Always end: “Return to Catalog.”</div>
+        <div class="badge">Do real tasking</div>
+        <div class="badge">Log proof</div>
       </div>
 
-      <div class="statusPill" id="curatorStatus">
+      <div class="statusPill">
         <span class="dot" aria-hidden="true"></span>
-        <span>Curator ready: open the Voiceflow chat bubble to begin.</span>
+        <span>Curator ready: open the Voiceflow or Jason bubble to begin.</span>
       </div>
 
       <div class="ctaRow">
         <a class="cta" href="#launcher">Enter 3×3 Gallery →</a>
-        <a class="cta ctaAlt" href="#log">Open Action Log →</a>
+        <button class="cta ctaAlt js-openLog" data-wing="Catalog" data-exhibit="https://taylor7617.github.io/FlightLine-GI-Curriculum/#catalog" type="button">
+          Log an Action (Modal) →
+        </button>
+        <a class="cta ctaWarn" id="sheetBtnTop" href="#" target="_blank" rel="noopener">Open Ledger (Sheet) →</a>
       </div>
     </section>
 
     <div class="divider"></div>
 
-    <!-- 3×3 -->
     <section id="launcher">
       <div class="hall-title">
         <h3>Ⅱ • 3×3 App Launcher</h3>
-        <div class="note">Nine wings. Choose one exhibit. Do one action. Log it.</div>
+        <div class="note">Choose a wing → complete one real action → log it.</div>
       </div>
 
       <div class="launcher">
-        <div class="stack" id="drive">
+        <!-- DRIVE -->
+        <div class="stack" data-wing="Drive">
           <div class="row">
-            <div class="title"><div class="icon">🗂️</div><div><div class="tag">LAND</div><h4>Drive</h4></div></div>
-            <a class="chip" href="#mission"><span>GO</span> Mission</a>
+            <div class="title">
+              <div class="icon">🗂️</div>
+              <div><div class="tag">LAND</div><h4>Drive</h4></div>
+            </div>
+            <button class="cta js-openLog" data-wing="Drive" data-exhibit="https://support.google.com/a/users/answer/9282958?p=drive_training&rd=1" type="button">
+              Log →
+            </button>
           </div>
           <p class="desc">Storage, structure, access, shared drives.</p>
           <div class="links">
-            <a class="lnk" href="https://support.google.com/a/users/answer/9282958?p=drive_training&rd=1" target="_blank" rel="noopener">Training & Help <small>official</small></a>
+            <a class="lnk" href="https://support.google.com/a/users/answer/9282958?p=drive_training&rd=1" target="_blank" rel="noopener">Exhibit: Training & Help <small>official</small></a>
+            <button class="lnk js-openLog" data-wing="Drive" data-exhibit="https://support.google.com/a/users/answer/9282958?p=drive_training&rd=1" type="button">Log this wing <small>Form</small></button>
           </div>
         </div>
 
-        <div class="stack" id="gmail">
+        <!-- GMAIL -->
+        <div class="stack" data-wing="Gmail">
           <div class="row">
-            <div class="title"><div class="icon">✉️</div><div><div class="tag">SIGNAL</div><h4>Gmail</h4></div></div>
-            <a class="chip" href="#mission"><span>GO</span> Mission</a>
+            <div class="title">
+              <div class="icon">✉️</div>
+              <div><div class="tag">SIGNAL</div><h4>Gmail</h4></div>
+            </div>
+            <button class="cta js-openLog" data-wing="Gmail" data-exhibit="https://support.google.com/a/users/answer/9259748?hl=en" type="button">Log →</button>
           </div>
           <p class="desc">Inbox structure, labels, filters, routing.</p>
           <div class="links">
-            <a class="lnk" href="https://support.google.com/a/users/answer/9259748?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
+            <a class="lnk" href="https://support.google.com/a/users/answer/9259748?hl=en" target="_blank" rel="noopener">Exhibit: Training & Help <small>official</small></a>
+            <button class="lnk js-openLog" data-wing="Gmail" data-exhibit="https://support.google.com/a/users/answer/9259748?hl=en" type="button">Log this wing <small>Form</small></button>
           </div>
         </div>
 
-        <div class="stack" id="calendar">
+        <!-- CALENDAR -->
+        <div class="stack" data-wing="Calendar">
           <div class="row">
-            <div class="title"><div class="icon">📅</div><div><div class="tag">TIME</div><h4>Calendar</h4></div></div>
-            <a class="chip" href="#mission"><span>GO</span> Mission</a>
+            <div class="title">
+              <div class="icon">📅</div>
+              <div><div class="tag">TIME</div><h4>Calendar</h4></div>
+            </div>
+            <button class="cta js-openLog" data-wing="Calendar" data-exhibit="https://support.google.com/a/users/answer/9247501?hl=en" type="button">Log →</button>
           </div>
           <p class="desc">Scheduling as infrastructure.</p>
           <div class="links">
-            <a class="lnk" href="https://support.google.com/a/users/answer/9247501?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
+            <a class="lnk" href="https://support.google.com/a/users/answer/9247501?hl=en" target="_blank" rel="noopener">Exhibit: Training & Help <small>official</small></a>
+            <button class="lnk js-openLog" data-wing="Calendar" data-exhibit="https://support.google.com/a/users/answer/9247501?hl=en" type="button">Log this wing <small>Form</small></button>
           </div>
         </div>
 
-        <div class="stack" id="docs">
+        <!-- DOCS -->
+        <div class="stack" data-wing="Docs">
           <div class="row">
-            <div class="title"><div class="icon">📄</div><div><div class="tag">TEXT</div><h4>Docs</h4></div></div>
-            <a class="chip" href="#mission"><span>GO</span> Mission</a>
+            <div class="title">
+              <div class="icon">📄</div>
+              <div><div class="tag">TEXT</div><h4>Docs</h4></div>
+            </div>
+            <button class="cta js-openLog" data-wing="Docs" data-exhibit="https://support.google.com/a/users/answer/9282664?hl=en" type="button">Log →</button>
           </div>
           <p class="desc">Documents, comments, versions.</p>
           <div class="links">
-            <a class="lnk" href="https://support.google.com/a/users/answer/9282664?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
+            <a class="lnk" href="https://support.google.com/a/users/answer/9282664?hl=en" target="_blank" rel="noopener">Exhibit: Training & Help <small>official</small></a>
+            <button class="lnk js-openLog" data-wing="Docs" data-exhibit="https://support.google.com/a/users/answer/9282664?hl=en" type="button">Log this wing <small>Form</small></button>
           </div>
         </div>
 
-        <div class="stack" id="sheets">
+        <!-- SHEETS -->
+        <div class="stack" data-wing="Sheets">
           <div class="row">
-            <div class="title"><div class="icon">📊</div><div><div class="tag">DATA</div><h4>Sheets</h4></div></div>
-            <a class="chip" href="#mission"><span>GO</span> Mission</a>
+            <div class="title">
+              <div class="icon">📊</div>
+              <div><div class="tag">DATA</div><h4>Sheets</h4></div>
+            </div>
+            <button class="cta js-openLog" data-wing="Sheets" data-exhibit="https://support.google.com/a/users/answer/9282959?hl=en" type="button">Log →</button>
           </div>
           <p class="desc">Tables, formulas, analysis.</p>
           <div class="links">
-            <a class="lnk" href="https://support.google.com/a/users/answer/9282959?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
+            <a class="lnk" href="https://support.google.com/a/users/answer/9282959?hl=en" target="_blank" rel="noopener">Exhibit: Training & Help <small>official</small></a>
+            <button class="lnk js-openLog" data-wing="Sheets" data-exhibit="https://support.google.com/a/users/answer/9282959?hl=en" type="button">Log this wing <small>Form</small></button>
           </div>
         </div>
 
-        <div class="stack" id="slides">
+        <!-- SLIDES -->
+        <div class="stack" data-wing="Slides">
           <div class="row">
-            <div class="title"><div class="icon">🖼️</div><div><div class="tag">BRIEF</div><h4>Slides</h4></div></div>
-            <a class="chip" href="#mission"><span>GO</span> Mission</a>
+            <div class="title">
+              <div class="icon">🖼️</div>
+              <div><div class="tag">BRIEF</div><h4>Slides</h4></div>
+            </div>
+            <button class="cta js-openLog" data-wing="Slides" data-exhibit="https://support.google.com/a/users/answer/9282488?hl=en" type="button">Log →</button>
           </div>
           <p class="desc">Presentations and briefing craft.</p>
           <div class="links">
-            <a class="lnk" href="https://support.google.com/a/users/answer/9282488?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
+            <a class="lnk" href="https://support.google.com/a/users/answer/9282488?hl=en" target="_blank" rel="noopener">Exhibit: Training & Help <small>official</small></a>
+            <button class="lnk js-openLog" data-wing="Slides" data-exhibit="https://support.google.com/a/users/answer/9282488?hl=en" type="button">Log this wing <small>Form</small></button>
           </div>
         </div>
 
-        <div class="stack" id="meet">
+        <!-- MEET -->
+        <div class="stack" data-wing="Meet">
           <div class="row">
-            <div class="title"><div class="icon">🎥</div><div><div class="tag">ROOM</div><h4>Meet</h4></div></div>
-            <a class="chip" href="#mission"><span>GO</span> Mission</a>
+            <div class="title">
+              <div class="icon">🎥</div>
+              <div><div class="tag">ROOM</div><h4>Meet</h4></div>
+            </div>
+            <button class="cta js-openLog" data-wing="Meet" data-exhibit="https://support.google.com/a/users/answer/9282720?hl=en" type="button">Log →</button>
           </div>
           <p class="desc">Live meetings and controls.</p>
           <div class="links">
-            <a class="lnk" href="https://support.google.com/a/users/answer/9282720?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
+            <a class="lnk" href="https://support.google.com/a/users/answer/9282720?hl=en" target="_blank" rel="noopener">Exhibit: Training & Help <small>official</small></a>
+            <button class="lnk js-openLog" data-wing="Meet" data-exhibit="https://support.google.com/a/users/answer/9282720?hl=en" type="button">Log this wing <small>Form</small></button>
           </div>
         </div>
 
-        <div class="stack" id="chat">
+        <!-- CHAT -->
+        <div class="stack" data-wing="Chat">
           <div class="row">
-            <div class="title"><div class="icon">💬</div><div><div class="tag">SPACE</div><h4>Chat</h4></div></div>
-            <a class="chip" href="#mission"><span>GO</span> Mission</a>
+            <div class="title">
+              <div class="icon">💬</div>
+              <div><div class="tag">SPACE</div><h4>Chat</h4></div>
+            </div>
+            <button class="cta js-openLog" data-wing="Chat" data-exhibit="https://support.google.com/a/users/answer/9247502?hl=en" type="button">Log →</button>
           </div>
           <p class="desc">Spaces, threads, persistent teamwork.</p>
           <div class="links">
-            <a class="lnk" href="https://support.google.com/a/users/answer/9247502?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
+            <a class="lnk" href="https://support.google.com/a/users/answer/9247502?hl=en" target="_blank" rel="noopener">Exhibit: Training & Help <small>official</small></a>
+            <button class="lnk js-openLog" data-wing="Chat" data-exhibit="https://support.google.com/a/users/answer/9247502?hl=en" type="button">Log this wing <small>Form</small></button>
           </div>
         </div>
 
-        <div class="stack" id="contacts">
+        <!-- CONTACTS -->
+        <div class="stack" data-wing="Contacts">
           <div class="row">
-            <div class="title"><div class="icon">👤</div><div><div class="tag">ROSTER</div><h4>Contacts</h4></div></div>
-            <a class="chip" href="#mission"><span>GO</span> Mission</a>
+            <div class="title">
+              <div class="icon">👤</div>
+              <div><div class="tag">ROSTER</div><h4>Contacts</h4></div>
+            </div>
+            <button class="cta js-openLog" data-wing="Contacts" data-exhibit="https://support.google.com/a/users/answer/9282487?hl=en" type="button">Log →</button>
           </div>
           <p class="desc">Identity adjacency: contacts, labels, groups.</p>
           <div class="links">
-            <a class="lnk" href="https://support.google.com/a/users/answer/9282487?hl=en" target="_blank" rel="noopener">Training & Help <small>official</small></a>
-            <a class="lnk" href="https://support.google.com/a/users/answer/9310345?hl=en" target="_blank" rel="noopener">Get started <small>official</small></a>
+            <a class="lnk" href="https://support.google.com/a/users/answer/9282487?hl=en" target="_blank" rel="noopener">Exhibit: Training & Help <small>official</small></a>
+            <a class="lnk" href="https://support.google.com/a/users/answer/9310345?hl=en" target="_blank" rel="noopener">Exhibit: Get started <small>official</small></a>
+            <button class="lnk js-openLog" data-wing="Contacts" data-exhibit="https://support.google.com/a/users/answer/9282487?hl=en" type="button">Log this wing <small>Form</small></button>
           </div>
         </div>
       </div>
@@ -416,114 +558,291 @@
 
     <div class="divider"></div>
 
-    <!-- MISSION -->
-    <section id="mission">
+    <section id="log">
       <div class="hall-title">
-        <h3>Ⅲ • The Mission</h3>
-        <div class="note">This is not a quiz. It’s task completion + logging.</div>
+        <h3>Ⅲ • Action Log</h3>
+        <div class="note">Do one action. Log it in the modal. Return.</div>
       </div>
 
       <div class="panel">
-        <h4>How every session works (CLIME)</h4>
+        <h4>Log your completed task</h4>
         <p>
-          <strong>Catalog → 3×3 → Wing → Exhibit → Real Action → Log → Return.</strong><br/>
-          Your Voiceflow curator should only issue <strong>one instruction</strong>, then confirm, then proceed.
+          This is the flight recorder. Use the modal so you never leave the museum.
         </p>
+
         <div class="ctaRow">
-          <a class="cta" href="#catalog">Return to Catalog →</a>
-          <a class="cta ctaAlt" href="#log">Open Action Log →</a>
-          <a class="cta ctaWarn" href="#contacts">Jump to Contacts Wing →</a>
+          <button class="cta js-openLog" data-wing="Action Log" data-exhibit="https://taylor7617.github.io/FlightLine-GI-Curriculum/#log" type="button">
+            Open Action Log Modal →
+          </button>
+          <a class="cta ctaAlt" id="openLedgerMid" href="#" target="_blank" rel="noopener">Open Ledger Sheet →</a>
+          <a class="cta ctaWarn" href="#catalog">Return to Catalog →</a>
         </div>
-        <p style="margin-top:10px; color:var(--muted);">
-          Example directive: <code class="inline">Catalog → 3×3 → Contacts → Get started → Add 1 contact → Log</code>
+
+        <p style="margin-top:12px; color:var(--muted);">
+          If the embedded form is blocked in a browser, use “Open in new tab” inside the modal.
         </p>
       </div>
     </section>
 
     <div class="divider"></div>
 
-    <!-- ACTION LOG -->
-    <section id="log">
-      <div class="hall-title">
-        <h3>Ⅳ • Infrastructure Action Log</h3>
-        <div class="note">Your Form is the flight recorder. Your Sheet is the ledger.</div>
-      </div>
-
+    <section id="rules">
       <div class="panel">
-        <h4>Submit your completed action</h4>
+        <h4>Curator Rules (Jason + Voiceflow)</h4>
         <p>
-          Complete one real action, then submit the log. The curator can verify progress by reading the Sheet.
-        </p>
-
-        <div class="ctaRow">
-          <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSdUukhQdV_zvPGRUKMHE8hRTk2HqWPz5wc3C7Fih2oB-gLHmw/viewform?usp=publish-editor" target="_blank" rel="noopener">
-            Open Action Log Form →
-          </a>
-
-          <!-- This is useful for YOU (admin). Keep or remove. -->
-          <a class="cta ctaAlt" href="https://docs.google.com/spreadsheets/d/1CSN2Gw1VK6izyBt5YrjYpYGqdXRzoLhONQvFifr6aAw/edit?usp=sharing" target="_blank" rel="noopener">
-            Open Ledger Sheet →
-          </a>
-
-          <a class="cta ctaWarn" href="#catalog">Return to Catalog →</a>
-        </div>
-
-        <p style="margin-top:10px; color:var(--muted);">
-          If you want “no human,” the curator asks for: Wing, Exhibit, Action Completed, Proof note → then logs to Sheets automatically.
+          Give one instruction at a time. Always use: <code class="inline">Catalog → 3×3 → Wing → Exhibit</code>.
+          Always end: “Return to Catalog.”
         </p>
       </div>
     </section>
 
     <footer>
       <div><strong>Digital Alexandria</strong> — FlightLine GI Curriculum Museum Map.</div>
-      <div style="margin-top:6px;">
-        Voiceflow = Curator • Google Form = Action Log • Google Sheet = Ledger.
-      </div>
+      <div style="margin-top:6px;">Jason (ElevenLabs) = Voice • Voiceflow = Logic • Form Modal = Proof • Sheet = Ledger.</div>
     </footer>
   </div>
 
-  <!-- =========================================================
-       VOICEFLOW CURATOR WIDGET — PERFECT POSITION (BOTTOM)
-       Replace placeholders with your Voiceflow Web Chat embed values.
-  ========================================================== -->
+  <!-- ===========================
+       ACTION LOG MODAL
+       =========================== -->
+  <div class="modal" id="logModal" aria-hidden="true" data-open="false">
+    <div class="modalCard" role="dialog" aria-modal="true" aria-label="FlightLine Action Log">
+      <div class="modalHead">
+        <div class="left">
+          <div class="icon" aria-hidden="true">🧾</div>
+          <div style="min-width:0;">
+            <h5>FlightLine Action Log</h5>
+            <p class="sub" id="logModalSubtitle">Wing: Unknown</p>
+          </div>
+        </div>
 
+        <div class="modalActions">
+          <a class="cta ctaAlt" id="openFormNewTab" href="#" target="_blank" rel="noopener">Open in new tab →</a>
+          <button class="xbtn" id="closeModalBtn" type="button">Close ✕</button>
+        </div>
+      </div>
+
+      <div class="modalBody">
+        <iframe id="logModalFrame" title="FlightLine Action Log Form" loading="lazy" referrerpolicy="no-referrer"></iframe>
+      </div>
+
+      <div class="modalFoot">
+        <span>Complete the real action → log proof → Return to Catalog.</span>
+        <span id="modalMeta"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       CONFIG — UPDATE THESE 3 LINES ONLY
+  ====================================================== -->
   <script>
-    // Curator “teleport” helper (used by Voiceflow instructions)
-    window.ALEXANDRIA_GO = function(hash){
-      if(!hash) return;
-      if(!hash.startsWith("#")) hash = "#" + hash;
-      location.hash = hash;
-      document.querySelector(hash)?.scrollIntoView({behavior:"smooth", block:"start"});
-    };
+    // 1) Your public form base
+    const ACTION_LOG_FORM_VIEW  = "https://docs.google.com/forms/d/e/1FAIpQLSdUukhQdV_zvPGRUKMHE8hRTk2HqWPz5wc3C7Fih2oB-gLHmw/viewform";
+    const ACTION_LOG_FORM_EMBED = ACTION_LOG_FORM_VIEW + "?embedded=true";
 
-    // Optional: give Voiceflow a clean “page context”
-    window.FLIGHTLINE_CONTEXT = {
-      site: "FlightLine GI Curriculum",
-      doctrine: "Catalog → 3×3 → Wing → Exhibit → Real Action → Log → Return",
-      actionLogForm: "https://docs.google.com/forms/d/e/1FAIpQLSdUukhQdV_zvPGRUKMHE8hRTk2HqWPz5wc3C7Fih2oB-gLHmw/viewform?usp=publish-editor",
-      ledgerSheet: "https://docs.google.com/spreadsheets/d/1CSN2Gw1VK6izyBt5YrjYpYGqdXRzoLhONQvFifr6aAw/edit?usp=sharing"
-    };
+    // 2) Your ledger sheet
+    const LEDGER_SHEET = "https://docs.google.com/spreadsheets/d/1CSN2Gw1VK6izyBt5YrjYpYGqdXRzoLhONQvFifr6aAw/edit?usp=sharing";
+
+    // 3) Prefill Entry IDs (REPLACE after you copy the prefilled link)
+    const ENTRY_WING    = "entry.123456789";   // REQUIRED
+    const ENTRY_EXHIBIT = "entry.987654321";   // optional (if you created Exhibit URL)
+    const ENTRY_NOTE    = "entry.555555555";   // optional (if you created Proof Note)
   </script>
 
-  <!-- 1) Paste your Voiceflow widget script URL below -->
-  <script src="VF_WIDGET_SRC"></script>
-
-  <!-- 2) Paste your Voiceflow init below OR replace this with the exact snippet Voiceflow gives you -->
+  <!-- =====================================================
+       LOG MODAL + PREFILL + EVENT BRIDGE
+  ====================================================== -->
   <script>
-    // If your embed snippet differs, delete this init and paste Voiceflow's official init as-is.
-    window.voiceflow?.chat?.load?.({
-      projectID: "VF_PROJECT_ID",
-      versionID: "production",
-      assistant: {
-        title: "Curator of Digital Alexandria",
-        description: "Catalog → 3×3 → Wing → Exhibit. One instruction at a time. Return to Catalog."
-      },
-      // If your widget supports custom variables, you can pass your context
-      // (Some versions use 'variables', others do not—safe to remove if it errors.)
-      variables: {
-        FLIGHTLINE_CONTEXT: JSON.stringify(window.FLIGHTLINE_CONTEXT || {})
-      }
+    // Wire ledger buttons
+    document.getElementById("sheetBtnTop").href = LEDGER_SHEET;
+    document.getElementById("openLedgerMid").href = LEDGER_SHEET;
+
+    // Build prefill URL for VIEWFORM
+    function buildPrefillURL({ wing="Unknown", exhibit="", note="" } = {}) {
+      const url = new URL(ACTION_LOG_FORM_VIEW);
+      url.searchParams.set("usp", "pp_url");
+
+      // REQUIRED
+      url.searchParams.set(ENTRY_WING, wing);
+
+      // OPTIONAL
+      if (ENTRY_EXHIBIT && exhibit) url.searchParams.set(ENTRY_EXHIBIT, exhibit);
+      if (ENTRY_NOTE && note) url.searchParams.set(ENTRY_NOTE, note);
+
+      return url.toString();
+    }
+
+    // Convert a viewform prefill URL → embed prefill URL
+    function toEmbedURL(prefillViewURL){
+      // preserve all query params; just swap the base to embedded=true
+      return prefillViewURL.replace(ACTION_LOG_FORM_VIEW, ACTION_LOG_FORM_EMBED);
+    }
+
+    // Modal engine
+    const modal = document.getElementById("logModal");
+    const frame = document.getElementById("logModalFrame");
+    const subtitle = document.getElementById("logModalSubtitle");
+    const closeBtn = document.getElementById("closeModalBtn");
+    const newTabBtn = document.getElementById("openFormNewTab");
+    const modalMeta = document.getElementById("modalMeta");
+
+    let lastFocus = null;
+
+    function openLogModal(wing, exhibitURL="") {
+      lastFocus = document.activeElement;
+
+      const safeWing = (wing && String(wing).trim()) ? String(wing).trim() : "Unknown";
+      const safeEx = (exhibitURL && String(exhibitURL).trim()) ? String(exhibitURL).trim() : "";
+
+      subtitle.textContent = "Wing: " + safeWing;
+      modalMeta.textContent = safeEx ? ("Exhibit: " + safeEx) : "";
+
+      const prefill = buildPrefillURL({ wing: safeWing, exhibit: safeEx });
+      const embedURL = toEmbedURL(prefill);
+
+      frame.src = embedURL;
+      newTabBtn.href = prefill;
+
+      modal.dataset.open = "true";
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("lockScroll");
+      closeBtn.focus();
+
+      // Fire a custom event (useful for analytics + agents)
+      window.dispatchEvent(new CustomEvent("flightline.log.open", {
+        detail: { wing: safeWing, exhibit: safeEx, time: Date.now() }
+      }));
+    }
+
+    function closeLogModal(){
+      modal.dataset.open = "false";
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("lockScroll");
+      frame.src = "about:blank";
+      if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+
+      window.dispatchEvent(new CustomEvent("flightline.log.close", {
+        detail: { time: Date.now() }
+      }));
+    }
+
+    modal.addEventListener("click", (e) => { if(e.target === modal) closeLogModal(); });
+    closeBtn.addEventListener("click", closeLogModal);
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape" && modal.dataset.open === "true") closeLogModal();
     });
+
+    // Wire all modal triggers
+    document.querySelectorAll(".js-openLog").forEach(btn => {
+      btn.addEventListener("click", () => openLogModal(btn.dataset.wing || "Unknown", btn.dataset.exhibit || ""));
+    });
+
+    // Context for agents
+    window.FLIGHTLINE_CONTEXT = {
+      doctrine: "Catalog → 3×3 → Wing → Exhibit → Real Action → Log → Return",
+      actionLogForm: ACTION_LOG_FORM_VIEW,
+      ledgerSheet: LEDGER_SHEET
+    };
   </script>
+
+  <!-- =====================================================
+       VOICEFLOW WIDGET (LOGIC CURATOR)
+       Replace projectID if needed
+  ====================================================== -->
+  <script type="text/javascript">
+    (function(d, t) {
+        var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+        v.onload = function() {
+          window.voiceflow.chat.load({
+            verify: { projectID: '693f2081b832da7413583a2a' },
+            url: 'https://general-runtime.voiceflow.com',
+            versionID: 'production',
+            voice: { url: "https://runtime-api.voiceflow.com" }
+          });
+        }
+        v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs";
+        v.type = "text/javascript";
+        s.parentNode.insertBefore(v, s);
+    })(document, 'script');
+  </script>
+
+  <!-- =====================================================
+       VOICEFLOW RUNTIME EVENT BRIDGE (web-voice)
+       Captures call start/end and prints to console
+       Optional: forward to webhook
+  ====================================================== -->
+  <script>
+  (function () {
+    const PROJECT_ID = "693f2081b832da7413583a2a";
+    const ENVIRONMENT_ID = "production";
+    const PLATFORM = "web-voice";
+
+    function emitFlightLineEvent(type, data) {
+      const payload = {
+        type,
+        data,
+        time: Date.now(),
+        resource: `project-${PROJECT_ID}`
+      };
+      console.log("[FLIGHTLINE VF EVENT]", payload);
+
+      // OPTIONAL: forward to webhook (Apps Script / Worker / Make)
+      // fetch("https://YOUR_WEBHOOK_URL", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(payload)
+      // });
+    }
+
+    // Wait for voiceflow global (widget loads async)
+    function attach() {
+      if (!window.voiceflow || !window.voiceflow.on) return false;
+
+      window.voiceflow.on("call.start", (event) => {
+        emitFlightLineEvent("runtime.call.start", {
+          userID: event?.userID || "anonymous",
+          projectID: PROJECT_ID,
+          environmentID: ENVIRONMENT_ID,
+          startTime: Date.now(),
+          platform: PLATFORM,
+          metadata: {}
+        });
+      });
+
+      window.voiceflow.on("call.end", (event) => {
+        emitFlightLineEvent("runtime.call.end", {
+          userID: event?.userID || "anonymous",
+          projectID: PROJECT_ID,
+          environmentID: ENVIRONMENT_ID,
+          startTime: event?.startTime || null,
+          endTime: Date.now(),
+          endReason: event?.reason || "user_exit",
+          platform: PLATFORM,
+          metadata: {}
+        });
+      });
+
+      return true;
+    }
+
+    // retry attach for a few seconds
+    let tries = 0;
+    const timer = setInterval(() => {
+      tries++;
+      if (attach() || tries > 40) clearInterval(timer);
+    }, 250);
+  })();
+  </script>
+
+  <!-- =====================================================
+       ELEVENLABS JASON SUMMERFALL WIDGET (VOICE CURATOR)
+===================================================== -->
+  <script src="https://elevenlabs.io/convai-widget/index.js" async></script>
+  <elevenlabs-convai
+    agent-id="agent_9801kcfjrs3ker8bp514dh2ex823"
+    style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
+  </elevenlabs-convai>
+
 </body>
 </html>
